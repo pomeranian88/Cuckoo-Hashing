@@ -1,27 +1,29 @@
 /*
  * Author: Zev Thompson
  * 
- * Collab Statement: Wrote the code by myself but talked through the logic of the get and set functions with Ian.
+ * DISCLAIMER -- I realize that this doesn't work, and I only realized late into my debugging that I was thinking about it wrong. I'd
+ *               been working with the three cases (open spot in 0, open spot in 1, or double kick), and not considering two things:
+ *               1. that I need to reshash the ENTIRE table if I ever run into a cycle, and 2. that with this knowledge, there is the
+ *               possibility of something getting kicked around and around 2+ times, without having to rehash the entire table at the
+ *               moment that you're at 2+ collisions. 
  * 
- * Reflection:  Was not so hard, mainly just in understanding how arrays work, and drawing out how hash tables work here.
- *              But because no collision detection was needed it was fairly simple. Took around 1 hour.
+ *               Because I was instead working with cases, at the case where I was getting to the double kick, I would rehash the
+ *               abandoned piece into the first table with a different seed than everything else, which would in turn lose the whole table.
+ * 
+ *               To fix this I'll have to fully rewrite the insert() function to be a while loop. :(
+ * 
+ * 
+ * Collab Statement for pt 2: Wrote the code for get() & insert() by myself, wrote the code for rehash() & rehashUntilSuccess() with
+ *                            help from Ian. Collaborated with Ben throughout the whole process but it kiiiind of led nowhere -- we were
+ *                            both working with the wrong starting logic. And went to office hours, where I collaborated briefly with
+ *                            Seraphina & talked through re-seeding with Jean.
+ * 
+ * Reflection for pt 2: I ran into a lot of challenges with this project, and some of them were definitely with starting late into
+ *                      the process, and having to rush to understand the pre-written code, which ended up causing my initial failure
+ *                      in logic that messed up the rest of the project. I'm going to fix a lot of these mistakes for the re-do.
  */
 
 fun main() {
-    // val map = CuckooHashMap<Int, String>(20)
-    // map.set(1, "hello")
-    // println(map.get(1))
-    // map.display()
-    // map.set(1, "bang")
-    // println(map.get(1))
-    // map.display()
-    // map.set(1, "skeedat")
-    // println(map.get(1))
-    // map.display()
-    // map.set(1, "slammer")
-    // println(map.get(1))
-    // map.display()
-
     val map = CuckooHashMap<Int, String>(20)
     val max = 20
     for (key in 0..max step 2) {
