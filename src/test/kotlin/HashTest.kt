@@ -75,7 +75,8 @@ class HashTest {
                 }
             }
             // did not find it
-            fail("Did not find key $testKey")
+            map.display()
+            fail("Did not find key $testKey with $testValue")
         }
     }
 
