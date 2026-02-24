@@ -21,6 +21,7 @@
  * Reflection for pt 2: I ran into a lot of challenges with this project, and some of them were definitely with starting late into
  *                      the process, and having to rush to understand the pre-written code, which ended up causing my initial failure
  *                      in logic that messed up the rest of the project. I'm going to fix a lot of these mistakes for the re-do.
+ *                      I worked on this for like 12 hours.
  */
 
 fun main() {
